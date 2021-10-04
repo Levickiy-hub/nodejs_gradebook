@@ -1,0 +1,48 @@
+include index.pug
+table
+    tr 
+        th lesson
+        th teacher
+        th group
+    if schedule !== undefined
+                         each val in schedule
+                            tr      
+                                form(action='/admin/schedule', method='POST')
+                                    td
+                                        select(name = 'lesson')
+                                            option(value = val.lid) #{val.name}
+                                            each lesson in lessons
+                                                option(value = lesson.id) #{lesson.name} 
+                                    td
+                                        select(name = 'teacher')
+                                            option(value=val.uid) #{val.teacher}
+                                            each teacher in teachers
+                                                option(value = teacher.id ) #{teacher.name}
+                                    td
+                                        select(name = 'group')
+                                            option(value=val.gid) #{val.course}/#{val.number}/#{val.subgroup}
+                                            each group in groups
+                                                option(value = group.id)  #{group.course}/#{group.number}/#{group.subgroup}
+                                    td
+                                        button(name='parm',value='update') update
+                                    td
+                                        input(type='hidden', name ='id', value = val.id) 
+    tr
+                            form(action='/admin/schedule', method='POST')
+                                    td
+                                        select(name = 'lesson')
+                                            option
+                                            each lesson in lessons
+                                                option(value = lesson.id) #{lesson.name} 
+                                    td
+                                        select(name = 'teacher') 
+                                            option
+                                            each teacher in teachers
+                                                option(value = teacher.id ) #{teacher.name}                       
+                                    td
+                                        select(name = 'group')
+                                            option
+                                            each group in groups
+                                                option(value = group.id)  #{group.course}/#{group.number}/#{group.subgroup}
+                                    td 
+                                        button(name='parm',value='add') add             

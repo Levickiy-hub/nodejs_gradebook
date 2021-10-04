@@ -1,0 +1,5 @@
+form(action='/teacher', method='POST')
+    ul(class='hr')
+        each val in courses
+              li 
+                button(name = 'course', value = val.id) #{val.course}  

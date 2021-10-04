@@ -1,0 +1,12 @@
+.courses {
+    /*display: inline;*/ /* Отображать как строчный элемент */
+}
+ul.hr li {
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    padding: 3px; /* Поля вокруг текста */
+}
+button{
+    border:none;
+}
+

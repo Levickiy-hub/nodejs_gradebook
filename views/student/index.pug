@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/stylesheets/table.css')
+    title
+  body
+    if lessons !== undefined
+         each val in lessons
+            form(action='/student', method='POST')
+                button(name='schedule', value = val.id) #{val.name}
+                input(type='hidden',name='lessonid',value=val.lessons)
+    if error != undefined
+        h4(color='red') #{error}
+    if mag !== undefined
+        h1 #{les.name}
+        table
+             each val in mag
+                tr
+                    td
+                        h1 number: #{val.number}
+                    td
+                        h1 rating: #{val.rating}

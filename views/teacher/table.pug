@@ -1,0 +1,22 @@
+table
+    tr
+        th name
+        th number/rating
+    each student in students
+        tr
+            td #{student.name}
+            if mags.length != 0
+                each mag in mags
+                    if mag.student == student.id
+                        td #{mag.number}/#{mag.rating}
+form(method='post', action='/teacher/lessons')
+    h4 name
+    select(name='student')
+        each student in students
+            option(value= student.id) #{student.name}
+    h4 number
+    input(type='text',name='number')
+    h4 rating
+    input(type='text',name='rating')
+    button add
+    input(type='hidden',name='schedule',value=schedule)
