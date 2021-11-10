@@ -2,6 +2,7 @@
 var express = require('express');
 const session = require('express-session');
 var passport = require('passport');
+const db = require('../db/DB');
 var router = express.Router();
 
 /* GET home page. */
@@ -26,5 +27,31 @@ router.post('/', passport.authenticate('local', { failureRedirect: '/' }),
 router.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/');
+});
+router.get('/updatepassword', function (req, res) {
+    var sessions = req.session;
+    if (sessions.passport.user.role == 'teacher' || sessions.passport.user.role == 'student' || sessions.passport.user.role == 'admin') {
+        res.render('index/UpdatePassword');
+    }
+    else {
+        res.redirect('/');
+    }
+});
+router.post('/updatepassword', function (req, res) {
+    var sessions = req.session;
+    if (sessions.passport.user.role == 'teacher' || sessions.passport.user.role == 'student' || sessions.passport.user.role == 'admin') {
+        const { password, password2 } = req.body;
+        if (password == password2) {
+            db.UpdatePassword(sessions.passport.user.id, password);
+            res.render('index/UpdatePassword', { message: 'ok' });
+        }
+        else {
+            res.render('index/UpdatePassword', { message: 'error' });
+        }
+
+    }
+    else {
+        res.redirect('/');
+    }
 });
 module.exports = router;
