@@ -147,12 +147,18 @@ async function UpdateUser(id, name,login,subgroup) {
     }, { where: { id: id } });
 
 };
+async function UpdatePassword(id, password) {
+    await db.User.update({
+        password: bcrypt.hashSync(password, 10)
+    }, { where: { id: id } });
+
+};
     module.exports = {
         CreateUser, CreateCourse, CreateGroup, CreateLesson, CreateSchedule, CreateMag,
         GetStudentByGroup, GetUserByLogin, GetTeacher, GetStudent, GetSchedule, GetGroups,
         GetLessonsByCourse, GetLessonsByTeacher, GetLessons, GetCourses, GetCourseById,
         GetLessonsBySubgroup, GetMagByStudent, GetLessonsById, GLBTC, GSTG,
         GetMagByShedules,
-        UpdateTeacher, UpdateLesson, UpdateSchedule, UpdateUser
+        UpdateTeacher, UpdateLesson, UpdateSchedule, UpdateUser, UpdatePassword
         
     }

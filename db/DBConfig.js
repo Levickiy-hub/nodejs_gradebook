@@ -148,7 +148,30 @@ const Mag = sequelize.define("mag", {
 });
 sequelize.sync().then()
     .catch(err => console.log(err));
-
+Course.hasMany(Group, {
+    foreignKey: 'course'
+});
+Course.hasMany(Lesson, {
+    foreignKey: 'curs'
+});
+Group.hasMany(User, {
+    foreignKey: 'subgroup'
+});
+//User.hasMany(Mag, {
+//    foreignKey: 'student'
+//});
+Group.hasMany(Schedule, {
+    foreignKey: 'subgroup'
+});
+//Schedule.hasOne(Mag, {
+//    foreignKey: 'shedule'
+//});
+Lesson.hasOne(Schedule, {
+    foreignKey: 'lesson'
+});
+User.hasMany(Schedule, {
+    foreignKey: 'teacher'
+});
 module.exports = {
     sequelize, User, Group, Lesson, Schedule, Course, Mag
 };
