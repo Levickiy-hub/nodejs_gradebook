@@ -1,0 +1,30 @@
+include index.pug
+table
+                    tr
+                        th name
+                        th course
+                        th number
+                    if lessons !== undefined
+                         each val in lessons
+                            tr      
+                                form(action='/admin/lesson', method='POST')
+                                    td
+                                        input(type='text', name ='name', value = val.name) 
+                                    td
+                                        input(type='text', name ='cours', value = val.curs) 
+                                    td
+                                        input(type='text', name ='number', value = val.number) 
+                                    td 
+                                        button(name='parm',value='update') update
+                                    td
+                                        input(type='hidden', name ='id', value = val.id) 
+                    tr
+                            form(action='/admin/lesson', method='POST')
+                                td
+                                     input(type ='text',name ='name') 
+                                td
+                                     input(type ='text',name ='cours') 
+                                td
+                                     input(type='text', name ='number') 
+                                td
+                                     button(name='parm',value='add') add                

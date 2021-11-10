@@ -1,0 +1,3 @@
+D:\Trash\register\register\register\obj\Debug\register.njsproj.AssemblyReference.cache
+D:\Trash\register\register\register\obj\Debug\register.njsproj.CoreCompileInputs.cache
+D:\Trash\register\register\register\bin\Microsoft.NodejsTools.WebRole.dll

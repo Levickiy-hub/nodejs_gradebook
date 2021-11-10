@@ -1,0 +1,36 @@
+include index.pug
+table
+    tr
+        th name
+        th login
+        th group
+    if students !== undefined
+        each val in students
+              tr      
+                form(action='/admin/student', method='POST')
+                                    td
+                                        input(type='text', name ='name', value = val.name) 
+                                    td
+                                        input(type='text', name ='login', value = val.login) 
+                                    td
+                                       select(name='group')
+                                         option(value = val.gid) #{val.course}/#{val.number}/#{val.subgroup}
+                                         each group in groups
+                                            option(value = group.id) #{group.course}/#{group.number}/#{group.subgroup}
+                                    td 
+                                        button(name='parm',value='update') update
+                                    td
+                                        input(type='hidden', name ='id', value = val.id) 
+    tr
+                form(action='/admin/student', method='POST')
+                                    td
+                                        input(type='text', name ='name') 
+                                    td
+                                        input(type='text', name ='login') 
+                                    td
+                                       select(name='group')
+                                         option
+                                         each group in groups
+                                            option(value = group.id) #{group.course}/#{group.number}/#{group.subgroup}
+                                    td 
+                                        button(name='parm',value='add') add                

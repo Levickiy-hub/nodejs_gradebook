@@ -1,0 +1,26 @@
+include index.pug
+table
+                tr
+                    th name
+                    th login
+                if teachers !== undefined
+                     each val in teachers
+                        tr      
+                            form(action='/admin/teacher', method='POST')
+                                td
+                                    input(type='text', name ='name', value = val.name) 
+                                td
+                                    input(type='text', name ='login', value = val.login) 
+                                td 
+                                    button(name='parm',value='update') update
+                                td
+                                    input(type='hidden', name ='id', value = val.id) 
+                tr
+                        form(action='/admin/teacher', method='POST')
+                            td
+                                 input(type ='text',name ='name') 
+                            td
+                                 input(type ='text',name ='login') 
+                            td 
+                                    button(name='parm',value='add') add
+                

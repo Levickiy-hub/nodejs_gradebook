@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/teacher.css')
+    link(rel='stylesheet', href='/stylesheets/table.css')
+  body
+    div(class = 'courses')
+       include courses.pug
+       a(href='../updatepassword') update password
+    if lessons !== undefined
+         div(class = 'lessons')
+            each val in lessons
+                form(action='/teacher/lesson', method='POST')
+                    button(name='lessonid',value=val.id) #{val.name} #{val.number}/#{val.subgroup}
+                    input(type='hidden', name ='number', value = val.col) 
+                    input(type='hidden', name ='group', value = val.group) 
+    if number !== undefined
+     include table.pug
